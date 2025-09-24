@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTransformer.ConsoleApp", "TinyTransformer.ConsoleApp\TinyTransformer.ConsoleApp.csproj", "{6CB9FE04-A76C-4B21-836C-65EE293D7DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTransformer.Core", "TinyTransformer.Core\TinyTransformer.Core.csproj", "{0A5D373C-A997-46B4-B7C9-36AD1B131F32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTransformer.Tests", "TinyTransformer.Tests\TinyTransformer.Tests.csproj", "{DAA751D8-640D-4B31-8F8C-9C4DD8F222EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CB9FE04-A76C-4B21-836C-65EE293D7DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB9FE04-A76C-4B21-836C-65EE293D7DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB9FE04-A76C-4B21-836C-65EE293D7DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB9FE04-A76C-4B21-836C-65EE293D7DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5D373C-A997-46B4-B7C9-36AD1B131F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5D373C-A997-46B4-B7C9-36AD1B131F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5D373C-A997-46B4-B7C9-36AD1B131F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5D373C-A997-46B4-B7C9-36AD1B131F32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAA751D8-640D-4B31-8F8C-9C4DD8F222EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAA751D8-640D-4B31-8F8C-9C4DD8F222EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA751D8-640D-4B31-8F8C-9C4DD8F222EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAA751D8-640D-4B31-8F8C-9C4DD8F222EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1899667-909A-4122-9D50-1F7C4381D488}
+	EndGlobalSection
+EndGlobal
