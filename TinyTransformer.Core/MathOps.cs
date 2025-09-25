@@ -148,4 +148,19 @@ public static class MathOps
 
         return S;
     }
+
+    //ReLU
+    //https://en.wikipedia.org/wiki/Rectified_linear_unit
+    public static float[,] ReLU(float[,] A)
+    {
+        int n = A.GetLength(0);
+        int m = A.GetLength(1);
+        var R = new float[n, m];
+
+        for(int i = 0; i< n;i++)
+            for(int j = 0; j< m;j++)
+                R[i, j] = Math.Max(0f, A[i,j]);
+
+        return R;
+    }
 }
