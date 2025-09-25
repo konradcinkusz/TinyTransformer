@@ -20,7 +20,7 @@ public static class MathOps
                 var aik = A[i, k];
                 for(int j=0;j< p; j++)
                 {
-                    C[i, j] += aik * B[i, j];
+                    C[i, j] += aik * B[k, j];
                 }
             }
         }
@@ -97,7 +97,7 @@ public static class MathOps
     }
 
     //scalar–matrix multiplication method
-    public static float[,] Scal(float[,]A, float s)
+    public static float[,] ScalarMatrixMultiplication(float[,]A, float s)
     {
         int
             n = A.GetLength(0);
@@ -112,5 +112,40 @@ public static class MathOps
             }
 
         return C;
+    }
+
+    //turning logits into probabilities for each row
+    // https://en.wikipedia.org/wiki/Softmax_function
+    public static float[,] SoftmaxRows(float[,] A)
+    {
+        int n = A.GetLength(0); //rows
+        int m = A.GetLength(1);//cols
+
+        var S = new float[n, m];
+
+        for(int i = 0; i < n; i++)
+        {
+            float max = float.NegativeInfinity;
+            for(int j = 0; j < m; j++)
+                if (A[i,j] > max)
+                    max = A[i,j];
+
+            float sum = 0f;
+
+            for(int j = 0; j < m; j++)
+            {
+                S[i, j] = (float)Math.Exp(A[i, j] - max);
+                sum += S[i, j];
+            }
+
+            float inv = 1f / sum;
+
+            for (int j = 0; j < m; j++)
+            {
+                S[i, j] *= inv;
+            }
+        }
+
+        return S;
     }
 }

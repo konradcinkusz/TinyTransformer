@@ -1,13 +1,8 @@
-using System;
-using FluentAssertions;
-using TinyTransformer.Core;
-using Xunit;
-
 namespace TinyTransformer.Tests;
 
 public class MathOpsTests
 {
-    private static void MatricesShouldBeApproximatelyEqual(float[,] actual, float[,] expected, float tol = 1e-5f)
+    protected static void MatricesShouldBeApproximatelyEqual(float[,] actual, float[,] expected, float tol = 1e-5f)
     {
         actual.GetLength(0).Should().Be(expected.GetLength(0));
         actual.GetLength(1).Should().Be(expected.GetLength(1));
@@ -71,7 +66,7 @@ public class MathOpsTests
     public void Scale_Works()
     {
         var A = new float[,] { { 1, -2 }, { 0.5f, 4 } };
-        var C = MathOps.Scal(A, 2f);
+        var C = MathOps.ScalarMatrixMultiplication(A, 2f);
 
         var expected = new float[,] { { 2, -4 }, { 1f, 8 } };
         MatricesShouldBeApproximatelyEqual(C, expected);
@@ -108,4 +103,7 @@ public class MathOpsTests
         Action act = () => MathOps.AddBias(A, b);
         act.Should().Throw<ArgumentException>();
     }
+
+
+
 }
