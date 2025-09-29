@@ -1,6 +1,6 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.MathOpsTests;
 
-public sealed class ReLUMathOpsTest : MathOpsTests
+public sealed class ReLUMathOpsTest : TestsBase
 {
     [Fact]
     public void ReLU_SetsNegativesToZero_AndKeppNonNegatives()

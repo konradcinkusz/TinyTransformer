@@ -1,16 +1,7 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.MathOpsTests;
 
-public class MathOpsTests
+public class BasicTestsBase : TestsBase
 {
-    protected static void MatricesShouldBeApproximatelyEqual(float[,] actual, float[,] expected, float tol = 1e-5f)
-    {
-        actual.GetLength(0).Should().Be(expected.GetLength(0));
-        actual.GetLength(1).Should().Be(expected.GetLength(1));
-        for (int i = 0; i < actual.GetLength(0); i++)
-            for (int j = 0; j < actual.GetLength(1); j++)
-                actual[i, j].Should().BeApproximately(expected[i, j], tol);
-    }
-
     [Fact]
     public void MatMul_SmallExample_Works()
     {
@@ -103,7 +94,5 @@ public class MathOpsTests
         Action act = () => MathOps.AddBias(A, b);
         act.Should().Throw<ArgumentException>();
     }
-
-
 
 }

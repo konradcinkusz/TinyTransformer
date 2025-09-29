@@ -1,6 +1,6 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.MathOpsTests;
 
-public class InitMatrixTests : MathOpsTests
+public class InitMatrixTests : TestsBase
 {
     [Fact]
     public void InitMatrix_GenerateCorrectShape_AndValuesWithinRange()

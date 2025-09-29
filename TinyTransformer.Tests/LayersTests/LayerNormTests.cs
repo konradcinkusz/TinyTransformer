@@ -1,6 +1,6 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.LayersTests;
 
-public class LayerNormTests : MathOpsTests
+public class LayerNormTests : TestsBase
 {
     [Fact]
     public void LayerNorm_NormalizeEachRow()

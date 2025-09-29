@@ -4,7 +4,7 @@
 //core building block
 //fully connected / dense
 //Why we need a Linear class? -> Encapsulates a learnable affine transformation
-public class Linear
+public class Linear : ILayer
 {
     private readonly float[,] _W;
     private readonly float[] _b;

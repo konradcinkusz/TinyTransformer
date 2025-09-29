@@ -1,6 +1,6 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.MathOpsTests;
 
-public sealed class SoftMaxMathOpsTests : MathOpsTests
+public sealed class SoftMaxTestsBase : TestsBase
 {
     //1. Uniform distribution case
     [Fact]

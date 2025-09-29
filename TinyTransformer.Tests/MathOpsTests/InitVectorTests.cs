@@ -1,6 +1,6 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.MathOpsTests;
 
-public class InitVectorTests : MathOpsTests
+public class InitVectorTests : TestsBase
 {
     [Fact]
     public void InitVector_CreatesVectorWithCorrectLenghtAndDeafultZeroValues()

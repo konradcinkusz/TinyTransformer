@@ -3,7 +3,7 @@
 //It keeps transformers block's activations and gradients stable
 //LayerNorm compute mean and variance, normalize the row then scale and shift it with
 //learned vector gamma and beta
-public class LayerNorm
+public class LayerNorm : ILayer
 {
     private readonly int _d; // feature dimension (length of the vector that represents a single token)
     //in Transformer it's the size of each token's emvedding or hidden state

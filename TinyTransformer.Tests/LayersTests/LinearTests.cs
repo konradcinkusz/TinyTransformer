@@ -1,6 +1,6 @@
-namespace TinyTransformer.Tests;
+namespace TinyTransformer.Tests.LayersTests;
 
-public class LinearTests : MathOpsTests
+public class LinearTests : TestsBase
 {
     [Fact]
     public void Forward_SmallExample()
