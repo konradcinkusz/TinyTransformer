@@ -1,0 +1,87 @@
+@startuml
+
+' https://www.plantuml.com/plantuml/uml/bPNFRXen4CRl-nIZ7ABa41w0LbM0ageIj54XFVGsh6U9bLtFQcpKefPthtSjl9iORU26xTytVyPytdlhKDokAhCQynVS4bojjTcl1OqjM2gIqOoDvP8cTNq5VpE0l4HhuL5uArYrEm2Z4InH6o3ZP0yrQ-FyNdlqPCd2Z8K0ZOB9pZKw1JbNDHlFMqyTiaCsL81GF_KItVFtsdQfLmwTpg4YzypA7XDxRBahRsxX0xJHQhRKhYPAtTmsIFDhgj6skwiSot3-rMZdnQB_nELFoXrBgph4EXRQ44fNHg6fzEcl-uNq-Ncr8QMqsJP3E5-sehAOE4V6QJQNIH-8r0FBRnHrcN21Uv9lBDNvajwDpKtEYcHQSlvoNjuCugr-_7TtTnpj67QMxDl3rtCypIH3Eyqb4ufKg60uMCI6OwNwm0zDR0mrYWCkCaZYNYIEDtc9RCYDHmVt7RacOxddXC_e4AxXYyTWioiAakZAgO_RTD9QwnS9Dv0cuuxMV4JngsYrVe9NfbUwYTlC53Sb0TSnnKI5wBq7u0SjdeBBkN0L1cFFXAsT6oTSxqE-mSRNP9qzyGwr-rrTpYz3ASbJyHwPk7rOa7Xy44zi6cv-I9D1rsFO_XJTCmvej417X7K7f2q5BdL5bAHDUK7ghuWdJKNDmFyzwdsZnw-PboJFIuvbQIFnVj2KZnD9Zi8VEpvqzsHKyot-3m00
+
+package "TinyTransformer.ConsoleApp" {
+  class Program {
+    .. Main entry point ..
+    Uses Core and Autograd components
+  }
+}
+
+package "TinyTransformer.Core" {
+  class MathOps {
+    .. Static methods ..
+    MatMul() ; Transpose() ; Add()
+    AddBias() ; Scale() ; InitMatrix() ; InitVector()
+  }
+  class Linear {
+    .. fields & methods ..
+  }
+  class EmbeddingAuto {
+    .. fields & methods ..
+  }
+  class SelfAttentionAuto {
+    .. fields & methods ..
+  }
+  class FeedForwardAuto {
+    .. fields & methods ..
+  }
+  class LayerNorm {
+    .. fields & methods ..
+  }
+  class TransformerEncoderBlockAuto {
+    .. fields & methods ..
+  }
+
+  MathOps <|-- Linear : uses
+  MathOps <|-- EmbeddingAuto : uses
+  MathOps <|-- SelfAttentionAuto : uses
+  MathOps <|-- FeedForwardAuto : uses
+  Linear <|-- SelfAttentionAuto : uses
+  Linear <|-- FeedForwardAuto : uses
+  SelfAttentionAuto <|-- TransformerEncoderBlockAuto : part of
+  FeedForwardAuto <|-- TransformerEncoderBlockAuto : part of
+  LayerNorm <|-- TransformerEncoderBlockAuto : part of
+}
+
+package "TinyTransformer.Autograd" {
+  class Tensor {
+    .. Data & Grad buffers ..
+    Backward() ; ZeroGradient() ; AddParent()
+  }
+  class TensorOps {
+    .. differentiable ops ..
+    Add() ; MatMul() ; ReLU() ; Softmax() ; CrossEntropy()
+  }
+}
+
+package "TinyTransformer.Tests" {
+  class MathOpsTests {
+    .. tests ..
+  }
+  class LinearTests {
+    .. tests ..
+  }
+  class SelfAttentionTests {
+    .. tests ..
+  }
+  class FeedForwardTests {
+    .. tests ..
+  }
+  class TransformerBlockTests {
+    .. tests ..
+  }
+
+  MathOpsTests ..> MathOps : tests
+  LinearTests ..> Linear : tests
+  SelfAttentionTests ..> SelfAttentionAuto : tests
+  FeedForwardTests ..> FeedForwardAuto : tests
+  TransformerBlockTests ..> TransformerEncoderBlockAuto : tests
+}
+
+Program ..> EmbeddingAuto : calls
+Program ..> TransformerEncoderBlockAuto : calls
+Program ..> Linear : calls
+Program ..> Tensor : uses
+@enduml

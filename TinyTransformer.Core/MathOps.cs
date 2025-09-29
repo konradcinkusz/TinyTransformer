@@ -13,12 +13,12 @@ public static class MathOps
 
         var C = new float[n, p];
 
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
-            for(int k = 0; k < m; k++)
+            for (int k = 0; k < m; k++)
             {
                 var aik = A[i, k];
-                for(int j=0;j< p; j++)
+                for (int j = 0; j < p; j++)
                 {
                     C[i, j] += aik * B[k, j];
                 }
@@ -36,11 +36,11 @@ public static class MathOps
 
         var T = new float[m, n];
 
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
-            for(int j= 0; j< m; j++)
+            for (int j = 0; j < m; j++)
             {
-                T[j,i] = A[i, j];
+                T[j, i] = A[i, j];
             }
         }
 
@@ -55,16 +55,16 @@ public static class MathOps
         int n = A.GetLength(0);
         int m = A.GetLength(1);
 
-        if(B.GetLength(0) != n || B.GetLength(1) != m)
+        if (B.GetLength(0) != n || B.GetLength(1) != m)
         {
             throw new ArgumentException("Shape mismatch");
         }
 
         var C = new float[n, m];
 
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
-            for(int j = 0; j < m; j++)
+            for (int j = 0; j < m; j++)
             {
                 C[i, j] = A[i, j] + B[i, j];
             }
@@ -72,7 +72,7 @@ public static class MathOps
 
         return C;
     }
-    
+
     //adding a bias vector to each row of a matrix
     //(a common step in neural networks)
     public static float[,] AddBias(float[,] A, float[] b)
@@ -80,14 +80,14 @@ public static class MathOps
         int n = A.GetLength(0);
         int m = A.GetLength(1);
 
-        if (b.Length != m) 
+        if (b.Length != m)
             throw new ArgumentException("Bias length mismatch.");
 
         var C = new float[n, m];
 
-        for(int i = 0; i< n; i++)
+        for (int i = 0; i < n; i++)
         {
-            for(int j = 0; j < m; j++)
+            for (int j = 0; j < m; j++)
             {
                 C[i, j] = A[i, j] + b[j];
             }
@@ -97,16 +97,16 @@ public static class MathOps
     }
 
     //scalar–matrix multiplication method
-    public static float[,] ScalarMatrixMultiplication(float[,]A, float s)
+    public static float[,] ScalarMatrixMultiplication(float[,] A, float s)
     {
         int
             n = A.GetLength(0);
         int m = A.GetLength(1);
-        
+
         var C = new float[n, m];
 
-        for( int i = 0; i< n; i++)
-            for(int j = 0; j< m; j++)
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
             {
                 C[i, j] = A[i, j] * s;
             }
@@ -119,20 +119,20 @@ public static class MathOps
     public static float[,] SoftmaxRows(float[,] A)
     {
         int n = A.GetLength(0); //rows
-        int m = A.GetLength(1);//cols
+        int m = A.GetLength(1); //cols
 
         var S = new float[n, m];
 
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             float max = float.NegativeInfinity;
-            for(int j = 0; j < m; j++)
-                if (A[i,j] > max)
-                    max = A[i,j];
+            for (int j = 0; j < m; j++)
+                if (A[i, j] > max)
+                    max = A[i, j];
 
             float sum = 0f;
 
-            for(int j = 0; j < m; j++)
+            for (int j = 0; j < m; j++)
             {
                 S[i, j] = (float)Math.Exp(A[i, j] - max);
                 sum += S[i, j];
@@ -155,12 +155,53 @@ public static class MathOps
     {
         int n = A.GetLength(0);
         int m = A.GetLength(1);
+
         var R = new float[n, m];
 
-        for(int i = 0; i< n;i++)
-            for(int j = 0; j< m;j++)
-                R[i, j] = Math.Max(0f, A[i,j]);
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                R[i, j] = Math.Max(0f, A[i, j]);
 
         return R;
     }
+
+    public static float[,] InitMatrix(int rows, int cols, Random rnd, float scale = 0.02f)
+    {
+        var M = new float[rows, cols];
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                M[i, j] = (float)(rnd.NextDouble() * 2 - 1) * scale;//-scale to scale [-scale, scale), by deafult it will be [-0.02, 0.02)
+
+
+        return M;
+    }
+
+    public static float[] InitVector(int n, float value = 0f)
+    {
+        var v = new float[n];
+        for (int i = 0; i < n; i++)
+            v[i] = value;
+        return v;
+    }
+
+    public static float Mean(float[,] X, int row, int dim)
+    {
+        float mean = 0f;
+        for (int j = 0; j < dim; j++)
+            mean += X[row, j];
+        return mean /= dim;
+    }
+
+    public static float Variance(float[,] X, int row, int dim, float mean)
+    {
+        float variance = 0f;
+        for (int j = 0; j < dim; j++)
+        {
+            float u = X[row, j] - mean;
+            variance += u * u;
+        }
+        return variance /= dim;
+    }
+
 }

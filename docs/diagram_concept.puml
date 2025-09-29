@@ -1,0 +1,36 @@
+﻿@startuml
+package "TinyTransformer Model" {
+  [Input Tokens] --> [Embedding & Positional Encoding] : convert to vectors
+  [Embedding & Positional Encoding] --> [Transformer Blocks (×N)]
+  [Transformer Blocks (×N)] --> [Linear Layer] : hidden representations
+  [Linear Layer] --> [Softmax Output] : logits→probabilities
+  [Softmax Output] --> [Output Tokens] : sample next token
+
+  [Transformer Blocks (×N)] --> [MathOps] : uses
+  [Linear Layer] --> [MathOps] : uses
+  [Embedding & Positional Encoding] --> [MathOps] : uses
+
+  note right of [Transformer Blocks (×N)]
+    Each block contains:
+    * Multi‑Head Self‑Attention
+    * Add & LayerNorm
+    * Feed‑Forward (Linear → ReLU → Linear)
+    * Add & LayerNorm
+    (Encoder layers comprise self‑attention and feed‑forward sublayers:contentReference[oaicite:1]{index=1}.)
+  end note
+
+  note right of [MathOps]
+    Basic operations:
+    MatMul, Transpose, Add,
+    AddBias, Scale, InitMatrix, InitVector
+  end note
+
+  note bottom of [Softmax Output]
+    Final projection and softmax produce token probabilities.
+  end note
+}
+
+[Console App] --> [Input Tokens] : provides data
+[Tests] --> [MathOps] : tests
+[Tests] --> [Linear Layer] : tests
+@enduml

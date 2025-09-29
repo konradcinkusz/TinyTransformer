@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTransformer.ConsoleApp", "TinyTransformer.ConsoleApp\TinyTransformer.ConsoleApp.csproj", "{6CB9FE04-A76C-4B21-836C-65EE293D7DDC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTransformer.Core", "TinyTransformer.Core\TinyTransformer.Core.csproj", "{0A5D373C-A997-46B4-B7C9-36AD1B131F32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTransformer.Tests", "TinyTransformer.Tests\TinyTransformer.Tests.csproj", "{DAA751D8-640D-4B31-8F8C-9C4DD8F222EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\diagram_concept.puml = docs\diagram_concept.puml
+		docs\diagram_solution.png = docs\diagram_solution.png
+		docs\diagram_solution.puml = docs\diagram_solution.puml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
