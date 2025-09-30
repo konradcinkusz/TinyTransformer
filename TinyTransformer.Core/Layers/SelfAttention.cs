@@ -1,4 +1,4 @@
-﻿namespace TinyTransformer.Core;
+﻿namespace TinyTransformer.Core.Layers;
 
 // A class implementing a classic attention mechanism (one head)
 // followe by linear projection back to dModel
@@ -37,7 +37,7 @@ public class SelfAttention : ILayer
 
         //comput raw attention score (scores = Q*K^T)
         var scores = MathOps.MatMul(Q, MathOps.Transpose(K));
-        float scale = 1f / (float)(Math.Sqrt(_dk));
+        float scale = 1f / (float)Math.Sqrt(_dk);
         //lets scale to keep softmax in a numerically friendly range
         scores = MathOps.ScalarMatrixMultiplication(scores, scale);
 

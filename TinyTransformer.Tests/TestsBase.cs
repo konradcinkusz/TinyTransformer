@@ -10,6 +10,14 @@ public class TestsBase
             for (int j = 0; j < actual.GetLength(1); j++)
                 actual[i, j].Should().BeApproximately(expected[i, j], tol);
     }
+    protected static void RowsShouldBeApproximatelyEqaul(float[,] A, float[,]B, float tolerance = 1e-5f)
+    {
+        A.GetLength(0).Should().Be(B.GetLength(0));
+        A.GetLength(1).Should().Be(B.GetLength(1));
+        for(int i=0; i<A.GetLength(0);i++)
+            for(int j=0; j<A.GetLength(1);j++)
+                A[i, j].Should().BeApproximately(B[i,j], tolerance);
+    }
     protected static float[] RandomVector(int d, Random rnd)
     {
         var v = new float[d];
@@ -17,7 +25,6 @@ public class TestsBase
             v[i] = (float)rnd.NextDouble() - 0.5f;
         return v;
     }
-
     protected static float[,] TakeRow(float[] row, int nCopies)
     {
         var X = new float[nCopies, row.Length];

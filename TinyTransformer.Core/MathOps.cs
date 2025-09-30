@@ -176,6 +176,27 @@ public static class MathOps
 
         return M;
     }
+    public static float[,] InitMatrix(params float[][] rows)
+    {
+        if (rows == null || rows.Length == 0)
+            throw new ArgumentException("Provide at least one row", nameof(InitMatrix));
+
+        int r = rows.Length;
+        int c = rows[0].Length;
+
+        var M = new float[r, c];
+
+        for (int i = 0; i < r; i++)
+        {
+            if (rows[i].Length != c)
+                throw new ArgumentException("All rows must be the same lenght");
+
+            for (int j = 0; j < c; j++)
+                M[i, j] = rows[i][j];
+        }
+
+        return M;
+    }
 
     public static float[] InitVector(int n, float value = 0f)
     {
@@ -184,7 +205,12 @@ public static class MathOps
             v[i] = value;
         return v;
     }
-
+    public static float[] InitVector(params float[] values)
+    {
+        var v = new float[values.Length];
+        Array.Copy(values, v, values.Length);
+        return v;
+    }
     public static float Mean(float[,] X, int row, int dim)
     {
         float mean = 0f;
@@ -202,6 +228,19 @@ public static class MathOps
             variance += u * u;
         }
         return variance /= dim;
+    }
+
+    public static float[,] ReverseRow(float[,] X)
+    {
+        int n = X.GetLength(0);
+        int m = X.GetLength(1);
+        var Y = new float[n, m];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                Y[n - 1 - i, j] = X[i, j];
+
+        return Y;
     }
 
 }

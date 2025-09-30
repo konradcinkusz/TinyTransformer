@@ -29,4 +29,30 @@ public class SelfAttentionTests : TestsBase
                 Y[i, j].Should().BeApproximately(Y[0, j], 1e-5f);
         }
     }
+
+
+    [Fact]
+    public void SelfAttention_IsPermutationEquivariant_OverTokens()
+    {
+        //if you reorder (permute) the input token
+        //the output gets reordered in exactly the sameway
+
+        //Arrange 
+        int T = 7, dModel = 10, dK = 5, seed = 123;
+        var rnd = new Random(seed);
+
+        var X = MathOps.InitMatrix(T, dModel, rnd);
+        
+        //reverse rows of X
+        //definition of simple permuatation
+        var revX = MathOps.ReverseRow(X);
+        var attention = new SelfAttention(dModel, dK, new Random(seed)); //same to keeps test deterministic
+
+        //Act
+        var Y = attention.Forward(X);
+        var revY = attention.Forward(revX);
+
+        var Y_exepcted = MathOps.ReverseRow(Y);
+        RowsShouldBeApproximatelyEqaul(revY, Y_exepcted, 1e-5f);
+    }
 }

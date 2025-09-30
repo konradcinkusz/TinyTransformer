@@ -1,4 +1,4 @@
-﻿namespace TinyTransformer.Core;
+﻿namespace TinyTransformer.Core.Layers;
 
 //Linear layer: Y = X W + b
 //core building block

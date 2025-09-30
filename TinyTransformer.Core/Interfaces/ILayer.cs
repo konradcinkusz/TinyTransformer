@@ -1,4 +1,4 @@
-﻿namespace TinyTransformer.Core;
+﻿namespace TinyTransformer.Core.Interfaces;
 
 //neural net layer
 public interface ILayer

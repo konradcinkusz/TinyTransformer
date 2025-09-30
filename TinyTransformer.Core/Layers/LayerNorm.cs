@@ -1,4 +1,4 @@
-﻿namespace TinyTransformer.Core;
+﻿namespace TinyTransformer.Core.Layers;
 
 //It keeps transformers block's activations and gradients stable
 //LayerNorm compute mean and variance, normalize the row then scale and shift it with
